@@ -1,9 +1,15 @@
 const shellName = "shellby";
-const rootDir = '/Users/random';
+const homeDir = '/Users/random';
 // const homeDir = '~';
-const currDir = ["~"];
+const currDir = ['Users', 'random'];
 
 const getPrompt = function () {
+  const lastTwoDirectories = '/' + currDir.at(-2) + '/' + currDir.at(-1);
+
+  if (lastTwoDirectories === homeDir) {
+    return shellName + ' ~ %';
+  }
+
   return shellName + ' ' + currDir.at(-1) + ' %';
 }
 
@@ -37,7 +43,7 @@ const externCommands = function (command, args) {
 }
 
 const pwd = function () {
-  console.log(rootDir + '/' + currDir.join('/'));
+  console.log(currDir.join('/'));
 }
 
 const runCommand = function(currentCommand, args) {
